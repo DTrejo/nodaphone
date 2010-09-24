@@ -1,0 +1,102 @@
+/* sahara colors
+#D89F13 yellow gold 
+#3E0003 darkest red --> 330002 ... 1D0001
+#BC6B00 light golden orange
+#BD5A00 golden orange
+#892400 orange red
+#560000 dark red orange
+*/
+
+/*prokyon colors
+#02182B dark blue --> #2A0000 reddish via CL
+--> #01101C above darkened
+#498ACE light blue babyish
+#FFFF95 light yellow  --> #AEDDFF super baby blue via kuler
+-- #ffdb94 organgish yellow
+
+
+misc
+#6B3FA0 royal purple
+*/
+
+body {
+  font-size: 125%; /*20px*/
+	font-family: Garamond, "Hoefler Text", Palatino, "Palatino Linotype", serif;
+  color: #222;
+  background: #E1E1E1 url('../images/bg7.jpg');
+  text-shadow: 0px -1px 0px #fff;
+}
+
+#content {
+  margin: 3em auto 0em;
+}
+
+a:link,a:visited{color:#335F8E;-webkit-transition:all 0.12s ease-out;-moz-transition:all 0.12s ease-out;}
+a:active,a:hover{color:#4989CE;}
+a.hidden{color:#222;text-decoration:none;}
+
+h1 {
+  font-size: 6em; /* curse you world! */
+  width: 100%;
+}
+h1 a#me, h1 a#me:visited {
+  color: #222;
+  text-decoration: none;
+}
+h1 + .obra {
+  margin-top: 1.5em;
+}
+
+.obra {
+  width: 100%;
+  overflow: auto;
+}
+.obra > a:first-child {
+  margin-bottom: 1.5em;
+  background-color:inherit;
+  border:none;
+}
+.obra > a > img {
+  height:6em;
+}
+
+/*& separators*/
+.obra + .obra:before {
+  content:"&";
+  font-size: 3em;
+  font-family: Baskerville,"Goudy Old Style","Palatino","Book Antiqua",serif;
+  font-style: italic;
+  font-weight: normal;
+  display:block;
+  text-align:center;
+  color: #999; /*careful if you change the background!*/
+  color: rgba(0,0,0,.25);
+  line-height: 3em; /*adds nice top and bottom spacing*/
+}
+
+/*So that paragraphs don't mess with the separator spacing*/
+.obra p:last-child {
+  margin-bottom:0em;
+}
+
+#footer, #footer a {
+  background-color: #333;
+  color: #fff;
+  text-shadow: #000 0px 1px 1px;
+}
+#footer a{text-decoration: none;cursor:pointer;}
+
+#wrapper{margin-top:6em;}
+#wrapper > p {
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.fin {
+  font-size: 3em;
+  font-family: Baskerville,"Goudy Old Style","Palatino","Book Antiqua",serif;
+  font-style: italic;
+  display:block;
+  text-align:center;
+  line-height: 1.5em; /*adds nice top and bottom spacing*/
+}

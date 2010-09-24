@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>jQuery QlockTwo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="author" content="David Trejo">
+<meta name="keywords" content="time, qlock, qlocktwo, clock, simple">
+
+<link href="style.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Josefin+Sans+Std+Light:regular" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>
+// David Trejo
+// dtrejo.com
+// thanks to codeputty of #jquery and clocktwo.com
+
+// lights the appropriate words on the clock based on current time
+// Optional date object argument for debugging
+function words(d) {
+  var date = d || new Date()
+    , hours = (date.getHours() % 12)
+    , minutes = date.getMinutes()
+    , highlight = ['it', 'is']
+
+    // options: 'quarter', 'twenty', 'five', 'half', 'ten', 'to', 'past'
+    , times = [ { min: 60 - 4, words: ['oclock'] } // Round up, only way to make dots work well after half past
+              , { min: 55 - 4, words: ['five', 'to'] }
+              , { min: 50 - 4, words: ['ten', 'to'] }
+              , { min: 45 - 4, words: ['a', 'quarter', 'to'] }
+              , { min: 40 - 4, words: ['twenty', 'to'] }
+              , { min: 35 - 4, words: ['twenty', 'five', 'to'] }
+              , { min: 30, words: ['half', 'past'] }
+              , { min: 25, words: ['twenty', 'five', 'past'] }
+              , { min: 20, words: ['twenty', 'past'] }
+              , { min: 15, words: ['a', 'quarter', 'past'] }
+              , { min: 10, words: ['ten', 'past'] }
+              , { min:  5, words: ['five', 'past'] }
+              , { min:  0, words: ['oclock'] } ]    
+    , time;
+
+  for (i in times) {
+    time = times[i];
+    if (minutes >= time.min) {
+      $.merge(highlight, time.words);
+            
+      // Handle round up
+      if (minutes >= 56) {
+        dots(0);
+        break;
+      }
+      
+      // Handle dot changes when past 30 minutes
+      if (minutes >= 31) {
+        dots(time.min + 4 - minutes);
+        break;
+      }
+      
+      // else, under 30 mins
+      dots(minutes - time.min);
+      break;
+    }
+  }
+
+  var english = ['twelve', 'one', 'two', 'three', 'four', 'five2'
+                , 'six', 'seven', 'eight', 'nine', 'ten2', 'eleven'];
+
+  // Handle "it is half past two" --> "it is quarter to three"
+  if (minutes >= 31){
+    hours = (hours + 1) % 12; // mod prevents index out of bounds
+  }
+
+  highlight.push(english[hours]);
+
+  return highlight;
+}
+
+
+// Lights up to four dots.
+// Removes light from any other dots
+function dots(minutes) {
+  var els = $('.dot')
+    , el;
+
+  for (var i = 0; i <= 3; i++) {
+      el = els.eq(i);
+
+    if (i < minutes){
+      el.addClass('light');
+    } else {
+      el.removeClass('light');
+    }
+  }
+}
+
+// Lights first match on given word.
+// Exceptions:
+//    'a' lights second 'a'
+//    'five2' lights second 'five'
+//    'ten2' lights second 'ten'
+function light(string) {
+  var tds = $('td')
+    , text = tds.text()
+    , startAt
+    , start
+    , end;
+
+  string = string.toUpperCase();
+
+  // Light correct 'a'
+  startAt = (string === 'A') ? 11 : 0;
+
+  // Light correct 'five' and 'ten' (happens when they are hours)
+  if (string === 'FIVE2' || string === 'TEN2') {
+    startAt = 44;
+    string = string.substring(0, string.indexOf('2'));
+  }
+
+  start = text.indexOf(string, startAt);
+  end = start + string.length - 1;
+
+  // Find more elegant way to do this
+  for (var i = start, j = end; i <= j; i++) {
+    tds.eq(i).toggleClass('light');
+  }
+}
+
+// It's hammer time.
+$(document).ready(function() {
+  var oldWords = []
+    , newWords = []
+    , merged = []
+    , inOld
+    , inNew;
+
+  // var minutes = 60
+  //   , hours = 12
+  //   , d = new Date(2010, 6, 24, hours, minutes, 0, 0);
+  // $.map(words(d), light);
+
+  setInterval(function() {
+    oldWords = newWords;
+    newWords = words();
+    merged = $.merge($.merge([], oldWords), newWords); // Leave originals intact
+
+    // unlight words that are in the old array but not the new array.
+    $.map(merged, function(word) {
+     inOld = $.inArray(word, oldWords) > -1;
+     inNew = $.inArray(word, newWords) > -1;
+
+     if (inOld && inNew) {
+       // leave it lighted
+     } else if (!inOld && inNew) {
+       light(word); // light it
+     } else if (inOld && !inNew) {
+       light(word); // unlight it
+     }
+    });
+
+  }, 400);
+
+});
+
+</script>
+
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-11131137-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+</head>
+
+<body> 
+  <div id="wrapper">
+  <div id="highlight"></div> 
+  <div id="content">
+    
+    <div class='dots'>
+      <span class='dot'>●</span> <span class='dot'>●</span> <span class='dot'>●</span> <span class='dot'>●</span>
+    </div>
+
+    <table class="words font">
+      <tr><td>I</td> <td>T</td> <td>L</td> <td>I</td> <td>S</td> <td>A</td> <td>S</td> <td>T</td> <td>I</td> <td>M</td> <td>E</td></tr>
+      <tr><td>A</td> <td>C</td> <td>Q</td> <td>U</td> <td>A</td> <td>R</td> <td>T</td> <td>E</td> <td>R</td> <td>D</td> <td>C</td></tr>
+      <tr><td>T</td> <td>W</td> <td>E</td> <td>N</td> <td>T</td> <td>Y</td> <td>F</td> <td>I</td> <td>V</td> <td>E</td> <td>X</td></tr>
+      <tr><td>H</td> <td>A</td> <td>L</td> <td>F</td> <td>B</td> <td>T</td> <td>E</td> <td>N</td> <td>F</td> <td>T</td> <td>O</td></tr>
+      <tr><td>P</td> <td>A</td> <td>S</td> <td>T</td> <td>E</td> <td>R</td> <td>U</td> <td>N</td> <td>I</td> <td>N</td> <td>E</td></tr>
+      <tr><td>O</td> <td>N</td> <td>E</td> <td>S</td> <td>I</td> <td>X</td> <td>T</td> <td>H</td> <td>R</td> <td>E</td> <td>E</td></tr>
+      <tr><td>F</td> <td>O</td> <td>U</td> <td>R</td> <td>F</td> <td>I</td> <td>V</td> <td>E</td> <td>T</td> <td>W</td> <td>O</td></tr>
+      <tr><td>E</td> <td>I</td> <td>G</td> <td>H</td> <td>T</td> <td>E</td> <td>L</td> <td>E</td> <td>V</td> <td>E</td> <td>N</td></tr>
+      <tr><td>S</td> <td>E</td> <td>V</td> <td>E</td> <td>N</td> <td>T</td> <td>W</td> <td>E</td> <td>L</td> <td>V</td> <td>E</td></tr>
+      <tr><td>T</td> <td>E</td> <td>N</td> <td>S</td> <td>E</td> <td class="quote">O</td> <td>C</td> <td>L</td> <td>O</td> <td>C</td> <td>K</td></tr>
+    </table>
+    <p class="dtrejo font"><a href="http://blog.dtrejo.com/1100-clock-made-with-jquery" target="_blank">DTrejo</a></p>
+
+  </div>
+  </div>
+</body> 
+</html>
