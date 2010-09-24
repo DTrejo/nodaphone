@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>T</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="author" content="David Trejo">
+<meta name="keywords" content="Thes">
+<link rel="shortcut icon" href="/public/images/favicon.png">
+
+<link rel="stylesheet" href="public/css/screen.css" type="text/css" media="screen, projection"> 
+<link rel="stylesheet" href="public/css/style.css" type="text/css" media="screen, projection">
+<link href="http://fonts.googleapis.com/css?family=Josefin+Sans+Std+Light:regular" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="public/css/print.css" type="text/css" media="print"> 
+<!--[if lt IE 8]>
+		  <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection">
+		<![endif]-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>
+// David Trejo
+// dtrejo.com
+$(document).ready(function() {
+  var button = $('#in + a')
+    , input = $('#in');
+  
+  input.bind('keydown', function(e) { if (e.keyCode === 13) { getSyns(); } });
+  button.click(function() { getSyns(); });
+
+  function getSyns() {  
+    var json = {'words': encodeURIComponent(input.val())}
+      , words = input.val().split(' ');
+    
+    $.getJSON('/words', json, function(data) {
+      for (i in words){
+        var word = words[i];
+        if (data[word]) {
+          addItem(word, data[word]);
+        } else{
+          addItem(word);
+        }
+      }
+    });
+  }
+
+  // todo: get first few of verb noun adjective
+  // word itself not linked, each syn is a link that adds itself to sentence when clicked.
+  function addItem(word, data) {
+    console.log(data);
+    var list = data && data.noun.syn.slice(0,5).join(', ') || 'none'
+      , el = $('.template').first()
+                           .clone()
+                           .appendTo('#results')
+                           .html(word+': '+list)
+                           .slideDown('fast')
+                           .removeClass('template');
+  }
+  
+  $(document).ajaxError(function(e, xhr, ajaxOptions, exception) {
+    if(!ajaxOptions.error) {
+      console.log(xhr.responseText);
+      // alert em
+    }  
+  });
+});
+
+</script>
+
+<!-- <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-11131137-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script> -->
+</head>
+
+<body> 
+  <div id="wrapper">
+  <div id="highlight"></div> 
+  <div id="content">
+    
+    <h1><a href="http://www.dtrejo.com/thes">Thes</a></h1>
+    <label for="in">Enter words for which you'd like to find synonyms</label><br>
+    <input type="text" name="in" id="in"><a href="#">Find Synonyms</a>
+    
+    <div id="results">
+      <a href="#" class="template">Hello</a>
+    </div>
+
+    <p id="sentence">
+      
+    </p>
+    
+  </div>
+  </div>
+</body> 
+</html>

@@ -1,0 +1,76 @@
+/*// David Trejo 
+  // dtrejo.com
+  //*/
+  
+body {
+	background: #B0B4BD url("/public/images/background.png");
+	overflow-x: hidden; 
+	font-size: 175%; /*28px*/
+	
+	font-family: 'Josefin Sans Std Light', Arial, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0em;
+  word-spacing: 0em;
+}
+
+#wrapper{width:100%;}
+
+#highlight {
+	top: 2px;
+	width: 1158px;
+	min-height: 897px;
+	background: url("/public/images/bg_center_highlight.png") no-repeat;
+	margin: 0 auto;
+	margin-bottom: -897px;
+}
+#content{position:relative;min-height:800px;width:700px;margin:1.5em auto 0em;}
+/*.light{color:#fff;text-shadow:0px 0px 5px #fff;-webkit-transition:all 0.5s linear;-moz-transition:all 0.5s linear;}*/
+label {font-weight: 400;}
+#in {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  background-image: #F7FCFF url("/public/images/input_bg.png") repeat-x top;
+  font-size: 28px;
+  margin-top:0em;
+  padding-top:0em;
+}
+#results > a {
+  float:left;
+  width: 32.8%;
+  overflow: hidden;
+  border: 1px solid #999;
+}
+.template{display: none;}
+#sentence{}
+
+.hide{display:none;}
+
+/* Royal purple selection :) */
+::-moz-selection{background:#6B3FA0;}
+::selection{background:#6B3FA0;}
+code::-moz-selection{background:#6B3FA0;}
+code::selection{background:#6B3FA0;}
+
+
+/*awesome buttons*/
+.awesome, .awesome:visited {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+	background: #222 url(images/alert-overlay.png) repeat-x; 
+	display: inline-block; 
+	padding: 5px 10px 6px;
+	color: #fff;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+.awesome:hover{background-color:#111;color:#fff;}
+.awesome:active{top:1px;}
+.small.awesome,.small.awesome:visited{font-size:11px;padding:;}
+.awesome,.awesome:visited,.medium.awesome,.medium.awesome:visited{font-size:13px;font-weight:bold;line-height:1;text-shadow:0 -1px 1px rgba(0,0,0,0.25);}
+.large.awesome,.large.awesome:visited{font-size:28px;/*padding:8px 14px 9px;*/}
+.green.awesome,.green.awesome:visited{background-color:#91bd09;}
