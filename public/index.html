@@ -5,7 +5,6 @@
 
 <title>David Trejo | Developer and Student</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="author" content="David Trejo">
 <meta name="Copyright" content="Copyright 2009-2010 David Trejo">
 <meta name="keywords" content="David, Trejo, developer, programmer, student.">
@@ -24,15 +23,16 @@
     var me = 'david'
     , atDomain = '@dtrejo.com';
     $('a#email').click(function() {
-      $(this).after(me+atDomain).remove();
+      $(this).attr('href', 'mailto:' + me + atDomain)
+             .text(me + atDomain);
     });
-    
+
   });
 </script>
 
 </head>
 
-<body> 
+<body>
   <div class="container">
   <div id="content" class="prepend-4 span-16 append-4">
 
@@ -67,29 +67,20 @@
   
   <div id="footer">
   <div id="wrapper" class="container">
-    
-      <p class="prepend-4 span-16 append-4"><em>What footer most luxurious</em><br><br>
-        <a href="http://blog.dtrejo.com/">Blog</a><br> 
-        <a href="http://twitter.com/ddtrejo">Twitter</a><br>
-        <a id="email" title="david at this domain">Email</a><br><br>
-        <span class="fin">fin</span>
-      </p>
+    <p class="prepend-4 span-16 append-4"><em>What footer most luxurious</em><br><br>
+      <a href="http://blog.dtrejo.com/">Blog</a><br> 
+      <a href="http://twitter.com/ddtrejo">Twitter</a><br>
+      <a id="email" title="david at this domain">Email</a><br><br>
+      <span class="fin">fin</span>
+    </p>
   </div>
   </div>
-  <!-- Previous versions:
-        1.latest.datrej.appspot.com
-        2.latest.datrej.appspot.com
-        3.latest.datrej.appspot.com
-        4.latest.datrej.appspot.com
-        5.latest.datrej.appspot.com
-    
-        Current:
-        6.latest.datrej.appspot.com
-    
-        MAKE SURE TO CHANGE VERSION IN APPENGINE WEBINTERFACE WHEN DEPLOYING NEW -->
 
 	<!-- google analytics-->
 	<script type="text/javascript">var gaJsHost=(("https:"==document.location.protocol)?"https://ssl.":"http://www.");document.write(unescape("%3Cscript src='"+gaJsHost+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">try{var pageTracker=_gat._getTracker("UA-11131137-1");pageTracker._trackPageview();}
 catch(err){}</script>
+
+<!-- Nothing secret or fancy hidden here. Apologies. -->
+
 </body> 
 </html>
