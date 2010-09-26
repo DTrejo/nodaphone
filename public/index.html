@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="en-US"> 
+<head> 
+<meta charset="utf-8">
+
+<title>David Trejo | Developer and Student</title>
+
+<meta name="author" content="David Trejo">
+<meta name="Copyright" content="Copyright 2009-2010 David Trejo">
+<meta name="keywords" content="David, Trejo, developer, programmer, student.">
+<meta name="description" content="Website of David Trejo, student and developer.">
+
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+<link href="css/screen.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/dtrejo.css" rel="stylesheet" type="text/css" media="all">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function() {    
+
+    // Show email to humans.
+    var me = 'david'
+    , atDomain = '@dtrejo.com';
+    $('a#email').click(function() {
+      $(this).attr('href', 'mailto:' + me + atDomain)
+             .text(me + atDomain);
+    });
+
+  });
+</script>
+
+</head>
+
+<body>
+  <div class="container">
+  <div id="content" class="prepend-4 span-16 append-4">
+
+    <h1 class="last"><a id="me" href="http://dtrejo.com/">David Trejo</a></h1>
+
+    <div class="obra">
+      <a href="http://mixest.com/" title="See mixest.com">
+      <img alt="Mixest Logo" src="images/banner_mixest.png" class="span-16 append-bottom"></a>
+      <p><a href="http://mixest.com/">Mixest.com</a> is an indie music discovery site that makes it extremely easy to find new songs you've never heard. A few friends and I created it, and it's been a great learning experience. Most of my involvement has been on the frontend with Javascript, though I have dabbled a bit on the server side.
+      </p>
+    </div>
+    
+    <div class="obra">
+      <a href="http://dtrejo.com/qlock/qlock.html" title="See the jQuery QlockTwo">
+      <img alt="jQuery QlockTwo Screenshot" src="images/banner_jquery_qlocktwo.png" class="span-16 append-bottom"></a>
+      <p><a href="http://dtrejo.com/qlock/qlock.html">jQuery QlockTwo</a> — One weekend I decided to have some fun and build a website version of the $1100 <a href="http://qlocktwo.com/">QlockTwo</a> by Biegert and Funk. If you'd like to know the time, head on over to the <a href="http://http://dtrejo.com/qlock/qlock.html">live version</a>. If you'd like to read about the ways it distorts your sense of time, or learn about how I built it, you can read more <a href="http://blog.dtrejo.com/1100-clock-made-with-jquery">here</a>.</p>
+    </div>
+    
+    <div class="obra">
+      <a href="https://chrome.google.com/extensions/detail/nkeegljkkibjiiaehmjfncdbkbbgdojb" title="See extension">
+      <img alt="HN Hotkeys Logo" src="images/banner_hn_hotkeys.png" class="span-16 append-bottom"></a>
+      <p>Another weekend I noticed that my favorite startup news site lacked proper hotkeys, and so I built a <a href="https://chrome.google.com/extensions/detail/nkeegljkkibjiiaehmjfncdbkbbgdojb">Chrome extension</a> which does just that. I am most familiar with the hotkeys used by Gmail, so I incorporated those into the extension. I even <a href="http://github.com/dtrejo/HN-hotkeys/">open sourced it</a> so that when people complain I can just tell them to go write it themselves. Aren't I nice?</p>
+    </div>
+    
+    <div class="obra">
+      <p>In the summer of 2010 I built an intranet webapp for the <a href="http://va.gov/" class="hidden">Veteran's Benefit Administration</a> using <a class="hidden" href="http://nodejs.org/">Node.js</a> and jQuery. I wrote a <a href="http://blog.dtrejo.com/tag/nodejs">couple tutorials</a> and I learned a ton.</p>
+      <p>A million years ago, when I was in highschool, I built an <a href="http://ahs-catalog.appspot.com/ccatalog.html">online course catalog</a> so students wouldn't have to print 30 page booklets. I also helped my school secure federal money to install solar panels and helped to revive the men's tennis team, but I can't really link to the last two.</p>
+    </div>
+    
+  </div>
+  </div>
+  
+  <div id="footer">
+  <div id="wrapper" class="container">
+    <p class="prepend-4 span-16 append-4"><em>What footer most luxurious</em><br><br>
+      <a href="http://blog.dtrejo.com/">Blog</a><br> 
+      <a href="http://twitter.com/ddtrejo">Twitter</a><br>
+      <a id="email" title="david at this domain">Email</a><br><br>
+      <span class="fin">fin</span>
+    </p>
+  </div>
+  </div>
+
+	<!-- google analytics-->
+	<script type="text/javascript">var gaJsHost=(("https:"==document.location.protocol)?"https://ssl.":"http://www.");document.write(unescape("%3Cscript src='"+gaJsHost+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">try{var pageTracker=_gat._getTracker("UA-11131137-1");pageTracker._trackPageview();}
+catch(err){}</script>
+
+<!-- Nothing secret or fancy hidden here. Apologies. -->
+
+</body> 
+</html>
