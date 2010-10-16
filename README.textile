@@ -10,3 +10,13 @@ IMPORTANT! When checking out the git repo, make sure to include the submodules. 
 Another, once cloned
 
 <pre>git submodule update --init --recursive</pre>
+
+
+Crazy props to these technologies and individuals for making this possible:
+
+* "github.com/twilio":http://github.com/twilio
+* "github.com/learnboost/Socket.IO-node":http://github.com/learnboost/Socket.IO-node
+* "github.com/ry/node":http://github.com/ry/node/
+
+* "github.com/johndbritton":http://github.com/johndbritton
+* "github.com/Marak":http://github.com/Marak
