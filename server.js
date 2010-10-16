@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var sys = require('sys')
   , url = require('url')
   , http = require('http')
@@ -139,23 +138,3 @@ function censor (number) {
   var string = number + '';
   return '+XXX-xxx-' + string.slice(string.length - 4, string.length);
 }
-=======
-var static = require('node-static')
-  , http = require('http')
-  
-  // Create a node-static server instance to serve the './public' folder
-  , fileServer = new static.Server('./public');
-
-http.createServer(function (request, response) {
-  request.addListener('end', function () {
-
-    // Serve files!
-    fileServer.serve(request, response, function (e, res) {
-      if (e && (e.status === 404)) { // If the file wasn't found
-        // fileServer.serveFile('404.html', request, response);
-        fileServer.serveFile('404.html', 404, {}, request, response);
-      }
-    });
-  });
-}).listen(80);
->>>>>>> 4360b8db13385e7b0ff54d24b0e92e5d29c05d9e

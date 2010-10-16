@@ -1,3 +1,0 @@
-h1. David Trejo's personal site.
-
-You can see it at "dtrejo.com":http://dtrejo.com/
