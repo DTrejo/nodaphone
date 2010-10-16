@@ -117,21 +117,23 @@ io.on('connection', function(c) {
   
   // tell other clients they joined
   // client.send({ newPlayer: client.sessionId });
+  
+  // DON'T show connects or disconnects from browsers
 
-  client.on('message', function(message){
-    var action = { action: [censor(client.sessionId), message] };
-    
-    // why send the message by to yourself? 
-    // because the game listens to in messages only, so you have to tell the game what happened.
-    client.send(action); // send to self
-    client.broadcast(action); // send to others
-  });
-
-  client.on('disconnect', function(){
-    var msg = { dropPlayer: client.sessionId };
-    client.send(msg); // send to self
-    client.broadcast(msg);  // send to others
-  });
+  // client.on('message', function(message){
+  //   var action = { action: [censor(client.sessionId), message] };
+  //   
+  //   // why send the message by to yourself? 
+  //   // because the game listens to in messages only, so you have to tell the game what happened.
+  //   client.send(action); // send to self
+  //   client.broadcast(action); // send to others
+  // });
+  // 
+  // client.on('disconnect', function(){
+  //   var msg = { dropPlayer: client.sessionId };
+  //   client.send(msg); // send to self
+  //   client.broadcast(msg);  // send to others
+  // });
 });
 
 function censor (number) {
