@@ -1,0 +1,35 @@
+body {
+  width: 33em;
+  color: #D6D7D9;
+  background: #555;
+  margin: 3em auto;
+  font-family: 'Nobile', times, Times New Roman, times-roman, georgia, serif;    
+  font-size: 101%;
+}
+
+h1 > a, h1 > a:focus {
+  color: #D4E122;
+}
+a, a:focus {
+  color: #D4E122;
+}
+
+h2, .number{color:lightsteelblue;}
+
+ol{
+  text-shadow: 1px 1px 1px #444;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+li {
+  font-size: 1.5em;
+  margin-left: .6em;
+}
+li:last-child{margin-bottom:0em;}
+pre {
+  border-left: 3px solid #888;
+}
+pre#events{
+  min-height: 3em;
+  padding-left: 1em;
+}

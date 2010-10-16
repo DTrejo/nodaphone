@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Response>
+  <Gather action="/digits.xml" method="POST" timeout="9999" numDigits="1" finishOnKey="">
+    <Say>Pew!</Say>
+  </Gather>
+</Response>

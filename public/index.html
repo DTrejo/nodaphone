@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tanktacular</title>
+  <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="js/tanks.js"></script>
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Nobile&subset=latin' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+  <script>
+    var events;
+    $(document).ready(function() {
+      events = $('#events');
+    });
+ 
+    // so console.log always works
+    if (!window.console) {
+      window.console = new function() {
+        this.log = function(str) { /* alert(str) */ };
+      };
+    }
+    
+    // null defaults to the domain that this file is served from.
+    var socket = new io.Socket(null, {port: 80}); // IMPORTANT. HAVE THE PORT CORRECT.
+    
+    socket.connect();
+    
+    socket.on('message', function(obj) {
+      console.log('message:');
+      console.log(obj);
+
+      $('<span/>').text(JSON.stringify(obj) + '\n')
+                  .appendTo(events);
+    });
+    
+    socket.on('disconnect', function(obj) {
+      console.log('disconnect');
+      console.log(obj);
+      $('<span/>').text(JSON.stringify(obj) + '\n')
+                  .appendTo(events);
+      socket.connect(); 
+      // attempt to reconnect. I wonder if this makes it loop?
+      // This attempts to fix the problem where you need to refresh 
+      // before the server can talk to you. This problem happens
+      // whenever the server gets restarted.
+    });
+  </script>
+
+  <h1><a href="http://github.com/dtrejo/">Control a game* with your phone!</a></h1>
+  <p>* or anything!</p>
+  <ol>
+    <li>Call <span class="number">(415) 599-2671</span></li>
+    <li>Enter PIN: <span class="number">1419-4378</span> (normal users would not need to do this)</li>
+    <li>Press some buttons and see them transmitted to this window!</li>
+  </ol> 
+  <p>As you and others press buttons on their phones, the event will show up below.</p>
+
+  <h2>Try it out</h2>
+  <p>call in <a href="/controller.xml?From=555-501-1337&Digits=9" target="_blank">/controller.xml?From=555-501-1337&Digits=9</a><br>
+    press 9 <a href="/digits.xml?From=555-501-1337&Digits=9" target="_blank">/digits.xml?From=555-501-1337&Digits=9</a><br>
+    press 2 <a href="/digits.xml?From=555-501-1337&Digits=9" target="_blank">/digits.xml?From=555-501-1337&Digits=2</a><br>
+    hang up <a href="/digits.xml?From=555-501-1337&Digits=9&CallStatus=completed" target="_blank">/digits.xml?From=555-501-1337&Digits=9&CallStatus=completed</a>
+  </p>
+  
+  <h2>Events show below as people and phones hit the above URLs</h2>
+  <pre id="events"></pre>
+  
+  <h2>The Basics</h2>
+  <p>controller.xml and digits.xml are POSTed to by Twilio. This is important, because some servers refuse to serve files that are POSTed to :|</p>
+  <p>Twilio adds parameters when it hits asks for those files, which is how the server finds out about keypresses and new connections.</p>
+  <p>If you buy a number, remember to appropriately set your Voice URL, <code>http://dtrejo.no.de/controller.xml</code>, and your StatusCallback URL, <code>http://dtrejo.no.de/digits.xml</code></p>
+
+  <h2>controller.xml</h2>
+  <pre>
+    &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+    &lt;Response&gt;
+      &lt;Gather action="/digits.xml" method="POST" timeout="9999" numDigits="1" finishOnKey=""&gt;
+        &lt;Say&gt;Press sum buttons!&lt;/Say&gt;
+      &lt;/Gather&gt;
+    &lt;/Response&gt;</pre>
+  
+  <h2>digits.xml</h2>
+  <pre>
+    &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+    &lt;Response&gt;
+      &lt;Gather action="/digits.xml" method="POST" timeout="9999" numDigits="1" finishOnKey=""&gt;
+        &lt;Say&gt;Pew!&lt;/Say&gt;
+      &lt;/Gather&gt;
+    &lt;/Response&gt;</pre>
+  
+  <p>&mdash; Source at <a href="http://github.com/dtrejo/">SOURCEURL David Trejo</a></p>
+
+</body>
+</html>
