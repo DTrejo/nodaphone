@@ -51,29 +51,29 @@
     });
   </script>
 
-  <h1><a href="http://github.com/DTrejo/nodaphone">Control a game* with your phone!</a></h1>
-  <p>* or anything!</p>
+  <h1><a href="http://github.com/DTrejo/nodaphone">Nodaphone &mdash; control any webapp with your phone!</a></h1>
+  <p>* especially good for games!</p>
   <ol>
     <li>Call <span class="number">(415) 599-2671</span></li>
     <li>Enter PIN: <span class="number">1419-4378</span> (normal users would not need to do this)</li>
-    <li>Press some buttons and see them transmitted to this window!</li>
-  </ol> 
-  <p>As you and others press buttons on their phones, the event will show up below.</p>
+    <li>Press some buttons and see them transmitted to <a href="#eventheader">this window!</a></li>
+  </ol>
 
   <h2>Try it out</h2>
   <p>call in <a href="/controller.xml?From=555-501-1337&Digits=9" target="_blank">/controller.xml?From=555-501-1337&Digits=9</a><br>
     press 9 <a href="/digits.xml?From=555-501-1337&Digits=9" target="_blank">/digits.xml?From=555-501-1337&Digits=9</a><br>
     press 2 <a href="/digits.xml?From=555-501-1337&Digits=9" target="_blank">/digits.xml?From=555-501-1337&Digits=2</a><br>
-    hang up <a href="/digits.xml?From=555-501-1337&Digits=9&CallStatus=completed" target="_blank">/digits.xml?From=555-501-1337&Digits=9&CallStatus=completed</a>
+    hang up <a href="/digits.xml?From=555-501-1337&CallStatus=completed" target="_blank">/digits.xml?From=555-501-1337&CallStatus=completed</a>
   </p>
   
-  <h2>Events show below as people and phones hit the above URLs</h2>
+  <h2 id="eventheader">Events show below as people and phones hit the above URLs</h2>
   <pre id="events"></pre>
   
   <h2>The Basics</h2>
   <p>controller.xml and digits.xml are POSTed to by Twilio. This is important, because some servers refuse to serve files that are POSTed to :|</p>
-  <p>Twilio adds parameters when it hits asks for those files, which is how the server finds out about keypresses and new connections.</p>
+  <p>Twilio adds parameters when it hits asks for those files, which is how the server finds out about keypresses and new connections. The server then sends this information to whatever browser window you have open.</p>
   <p>If you buy a number, remember to appropriately set your Voice URL, <code>http://dtrejo.no.de/controller.xml</code>, and your StatusCallback URL, <code>http://dtrejo.no.de/digits.xml</code> (substitute your own URLs).</p>
+  <p>If you have free trial twilio account, you only need to set one URL (the big textbox once you've logged-in.</p>
 
   <h2>controller.xml</h2>
   <pre>
