@@ -4,7 +4,7 @@ var sys = require('sys')
   , eyes = require('eyes')
   , querystring = require('querystring')
   , io = require(__dirname + '/lib/socket.io-node')
-  , PORT = 80 // MAKE SURE THIS IS SAME AS SOCKET.IO
+  , PORT = 8082 // MAKE SURE THIS IS SAME AS SOCKET.IO
 
   , static = require('node-static')
   

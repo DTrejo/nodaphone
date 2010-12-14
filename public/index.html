@@ -26,7 +26,7 @@
     }
     
     // null defaults to the domain that this file is served from.
-    var socket = new io.Socket(null, {port: 80}); // IMPORTANT. HAVE THE PORT CORRECT.
+    var socket = new io.Socket(null, {port: 8082}); // IMPORTANT. HAVE THE PORT CORRECT.
     
     socket.connect();
     
@@ -43,7 +43,7 @@
       console.log(obj);
       $('<span/>').text(JSON.stringify(obj) + '\n')
                   .appendTo(events);
-      socket.connect(); 
+      socket.connect();
       // attempt to reconnect. I wonder if this makes it loop?
       // This attempts to fix the problem where you need to refresh
       // before the server can talk to you. This problem happens
@@ -72,7 +72,7 @@
   <h2>The Basics</h2>
   <p>controller.xml and digits.xml are POSTed to by Twilio. This is important, because some servers refuse to serve files that are POSTed to :|</p>
   <p>Twilio adds parameters when it hits asks for those files, which is how the server finds out about keypresses and new connections. The server then sends this information to whatever browser window you have open.</p>
-  <p>If you buy a number, remember to appropriately set your Voice URL, <code>http://dtrejo.no.de/controller.xml</code>, and your StatusCallback URL, <code>http://dtrejo.no.de/digits.xml</code> (substitute your own URLs).</p>
+  <p>If you buy a number, remember to appropriately set your Voice URL, <code>http://nodaphone.dtrejo.com/controller.xml</code>, and your StatusCallback URL, <code>http://nodaphone.dtrejo.com/digits.xml</code> (substitute your own URLs).</p>
   <p>If you have free trial twilio account, you only need to set one URL (the big textbox once you've logged-in.</p>
 
   <h2>controller.xml</h2>
