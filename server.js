@@ -84,8 +84,7 @@ var httpServer = http.createServer(function (request, response) {
         fileServer.serve(request, response, function (err, res) {
           if (err) { // An error as occured
             sys.error('> Error serving ' + request.url + ' - ' + err.message);
-            response.writeHead(err.status, err.headers);
-            response.end();
+            fileServer.serveFile('/404.html', err.headers, err.headers, request, response);
           } else { // The file was served successfully
             console.log('> ' + request.url + ' - ' + res.message);
           }
