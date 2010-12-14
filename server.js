@@ -3,7 +3,7 @@ var sys = require('sys')
   , http = require('http')
   , eyes = require('eyes')
   , querystring = require('querystring')
-  , io = require(__dirname + '/lib/socket.io-node')
+  , io = require('socket.io')
   , PORT = 8082 // MAKE SURE THIS IS SAME AS SOCKET.IO
 
   , static = require('node-static')
