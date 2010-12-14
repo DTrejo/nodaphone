@@ -1,9 +1,9 @@
 h1. "Nodaphone":http://github.com/dtrejo/nodaphone
 
 See the demo at "nodaphone.dtrejo.com":http://nodaphone.dtrejo.com/
-There's also some basic documentation over there :)
-Let me know if I should add more / or if it is unclear.
-Thanks!
+There's also some basic documentation over there. 
+
+Let me know if I should add more, or if it is unclear. Thanks!
 
 
 h2. Getting started
@@ -11,11 +11,12 @@ h2. Getting started
 "Install node.js and npm":http://joyeur.com/2010/12/10/installing-node-and-npm/
 
 Then clone the git repo like this, install the dependencies, and start up the demo:
-<pre>git submodule update --init --recursive
-npm install eyes socket.io ...
-cd nodaphone/
-node server.js</pre>
+<pre>cd nodaphone/
+git submodule update --init --recursive
+npm install eyes socket.io node-static
+node nodaphone.js</pre>
 
+(I may have forgotten a dependency, in which case you will need to <code>npm install</code> it.)
 
 Crazy props to these technologies and individuals for making this possible:
 
