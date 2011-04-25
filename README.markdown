@@ -3,7 +3,9 @@
 
 See the awesome game demo at [touchtonetanks.com](http://touchtonetanks.com/).
 See the barebones demo at [nodaphone.dtrejo.com](http://nodaphone.dtrejo.com/).
-There's also some basic documentation over there.
+There's also some basic documentation over there. 
+
+The main goal of this repo is to show you how to get the keypresses from the phone to your game in the browser. Other than that, it's probably a bad example of things. You may also want to look into something like [now.js](http://nowjs.com/) for more streamlined communication over socket.io.
 
 Let me know if I should add more, or if it is unclear. Thanks!
 
